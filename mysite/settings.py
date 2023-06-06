@@ -27,7 +27,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'csp.middleware.CSPMiddleware',
 ]
+
+CSP_STYLE_SRC = ["'self'", "cdn.jsdelivr.net",'fonts.googleapis.com','ajax.googleapis.com', 'fonts.gstatic.com',]
+CSP_IMG_SRC = ["'self'",]
+CSP_SCRIPT_SRC = ["'self'", "cdn.jsdelivr.net", 'ajax.googleapis.com','google.com', 'cdnjs.cloudflare.com']
+CSP_STYLE_SRC_ELEM = ["'self'", "cdn.jsdelivr.net", 'fonts.googleapis.com', 'fonts.gstatic.com']
+CSP_FONT_SRC = ["'self'", "fonts.gstatic.com", "data:"]
+CSP_FRAME_SRC = ["'self'", 'www.google.com', 'google.com']
+CSP_INCLUDE_NONCE_IN = ["script-src",]
 
 ROOT_URLCONF = 'mysite.urls'
 
@@ -105,3 +114,6 @@ SECURE_HSTS_SECONDS = 2_592_000
 SECURE_HSTS_PRELOAD = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', "https")
+SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
+REFERRER_POLICY = 'strict-origin'
+SECURE_CONTENT_TYPE_NOSNIFF = True
