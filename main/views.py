@@ -39,6 +39,3 @@ class HomeView(FormView):
 
 class PrivacyView(TemplateView):
     template_name = 'main/privacy.html'
-
-class TestingView(TemplateView):
-    template_name = 'main/testing.html'
