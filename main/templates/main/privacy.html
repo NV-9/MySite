@@ -1,25 +1,7 @@
+{% extends 'main/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Website For Viswamedha Nalabotu">
-    <meta name="keywords" content="Viswamedha Nalabotu">
-    <meta name="author" content="Viswamedha Nalabotu">
-
-    <title>Viswamedha Nalabotu</title>
-
-    <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
-    <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
-    <link href="{% static 'assets/img/favicon-32x32.png' %}" rel="icon" type="image/png" sizes="32x32">
-    <link href="{% static 'assets/img/favicon-16x16.png' %}" rel="icon" type="image/png" sizes="16x16">
-    <link href="{% static 'site.webmanifest' %}" rel="manifest">
-
-</head>
-<body>
+{% block title %}Viswamedha Nalabotu{% endblock title %}
+{% block body %}
     <h1>Privacy Policy for www.viswamedha.com</h1>
 
     <p>At www.viswamedha.com, accessible from www.viswamedha.com, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by www.viswamedha.com and how we use it.</p>
@@ -98,6 +80,4 @@
     <h2>Contact Us</h2>
 
     <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us.</p>
-</body>
-
-</html>
+{% endblock body %}

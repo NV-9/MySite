@@ -28,7 +28,6 @@ class ContactForm(forms.ModelForm):
         widget = forms.Textarea(attrs = {'class': 'form-control', 'id': 'content', 'rows': '10'})
     )
 
-
     class Meta:
         model = ContactMessages
         fields = ('name', 'email', 'subject', 'content',)

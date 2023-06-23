@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap 5 Calendar</title>
+    <link rel="stylesheet" href="{% static 'tutor/assets/css/calendar.css' %}">
+    <script id="events-data" type="application/json">
+        {% if request.user.is_staff %}
+            [
+                {% for event in events %}
+                    {   
+                        "start": "{{ event.start_time|date:"Y-m-d\TH:i:s" }}",
+                        "end": "{{ event.end_time|date:"Y-m-d\TH:i:s" }}",
+                        "title": "{{ event.lessonplan }}",
+                        "groupId": {{ event.lessonplan.id }},
+                        "color": "{{ event.lessonplan.color }}",
+                        "textColor": {% if event.lessonplan.student.count == event.paid.count %}"#00ff00"{% else %}"#ff0000"{% endif %}
+                    }
+                    {% if not forloop.last %},{% endif %}
+                {% endfor %}
+            ]
+        {% elif request.user.student %}
+            [
+                {% for event in events %}
+                    {% if request.user.student in event.lessonplan.student.all %}
+                        {   
+                            "start": "{{ event.start_time|date:"Y-m-d\TH:i:s" }}",
+                            "end": "{{ event.end_time|date:"Y-m-d\TH:i:s" }}",
+                            "title": "{{ event.lessonplan }}",
+                            "groupId": {{ event.lessonplan.id }},
+                            "color": "{{ event.lessonplan.color }}",
+                            "textColor": {% if request.user.student in event.paid.all %}"#00ff00"{% else %}"#ff0000"{% endif %}
+                        }
+                    {% else %}
+                        {   
+                            "start": "{{ event.start_time|date:"Y-m-d\TH:i:s" }}",
+                            "end": "{{ event.end_time|date:"Y-m-d\TH:i:s" }}",
+                            "title": "Slot Taken",
+                            "groupId": 0,
+                            "color": "#ffffff",
+                            "textColor": "#000000"
+                        }
+                    {% endif %}
+                    {% if not forloop.last %},{% endif %}
+                {% endfor %}
+            ]
+        {% endif %}
+    </script>
+</head>
+<body>
+    <div class="calendar-wrapper">
+        <div id="calendar" class="calendar-container"></div>
+      </div>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js" defer></script>
+  <script src="{% static 'tutor/assets/js/calendar.js' %}" defer></script>
+</body>
+</html>

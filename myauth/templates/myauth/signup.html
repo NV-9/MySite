@@ -1,0 +1,63 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}Signup - Viswamedha Nalabotu{% endblock title %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'myauth/assets/css/signup.css' %}">
+{% endblock styles %}
+{% block scripts %}
+{% endblock scripts %}
+{% block head %}
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="row justify-content-center align-items-center vh-100">
+        <div class="col-lg-8 col-md-10 col-sm-12">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">Signup</h3>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="mb-3 text-center form-group row">
+                            <div class="col-md-6">
+                                <label for="email_address" class="form-label text-center">Email:</label>
+                                {{ form.email_address }}
+                            </div>
+                            <div class="col-md-6">
+                                <label for="dob" class="form-label text-center">Date of Birth:</label>
+                                {{ form.date_of_birth }}
+                            </div>
+                        </div>
+                        <div class="mb-3 text-center form-group row">
+                            <div class="col-md-6">
+                                <label for="first_name" class="form-label text-center">First Name:</label>
+                                {{ form.first_name }}
+                            </div>
+                            <div class="col-md-6">
+                                <label for="last_name" class="form-label text-center">Last Name:</label>
+                                {{ form.last_name }}
+                            </div>
+                        </div>
+                        <div class="mb-3 text-center form-group row">
+                            <div class="col-md-6">
+                                <label for="password" class="form-label text-center">Password:</label>
+                                {{ form.password }}
+                            </div>
+                            <div class="col-md-6">
+                                <label for="confirm_password" class="form-label text-center">Confirm Password:</label>
+                                {{ form.confirm_password }}
+                            </div>
+                        </div>
+                        <div class="mb-3 text-center">
+                            <button type="submit" class="btn btn-primary">Signup</button>
+                        </div>
+                    </form>
+                    <div class="text-center">
+                        <p>Already have an account? <a href="/auth/login/">Login</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
