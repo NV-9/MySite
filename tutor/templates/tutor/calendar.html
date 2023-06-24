@@ -1,11 +1,14 @@
+{% extends 'main/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendar - Viswamedha Nalabotu</title>
+{% block title %}Calendar - Viswamedha Nalabotu{% endblock title %}
+{% block styles %}
     <link rel="stylesheet" href="{% static 'tutor/assets/css/calendar.css' %}">
+{% endblock styles %}
+{% block scripts %}
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js" defer></script>
+    <script src="{% static 'tutor/assets/js/calendar.js' %}" defer></script>
+{% endblock scripts %}
+{% block head %}
     <script id="events-data" type="application/json">
         {% if request.user.is_staff %}
             [
@@ -48,12 +51,9 @@
             ]
         {% endif %}
     </script>
-</head>
-<body>
+{% endblock head %}
+{% block body %}
     <div class="calendar-wrapper">
         <div id="calendar" class="calendar-container"></div>
-      </div>
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js" defer></script>
-  <script src="{% static 'tutor/assets/js/calendar.js' %}" defer></script>
-</body>
-</html>
+    </div>
+{% endblock body %}
