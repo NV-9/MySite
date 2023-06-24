@@ -53,7 +53,7 @@ class Lesson(models.Model):
     start_time = models.DateTimeField()
     end_time = models.DateTimeField(blank = True)
     lessonplan = models.ForeignKey(LessonPlan, on_delete = models.CASCADE, related_name = 'lessons')
-    paid = models.ManyToManyField(Student, related_name='paid_lessons')
+    paid = models.ManyToManyField(Student, related_name='paid_lessons', blank = True)
 
     def __str__(self):
         return f"{self.lessonplan} | {self.start_time} to {self.end_time} "
