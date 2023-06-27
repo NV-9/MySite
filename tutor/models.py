@@ -1,4 +1,5 @@
 from django.db import models
+from django.dispatch import receiver
 from myauth.models import User 
 import random 
 
@@ -8,6 +9,7 @@ def generate_color():
 
 class Course(models.Model):
     
+    subject = models.CharField(null = True)
     description = models.CharField()
     fee = models.PositiveIntegerField()
 
@@ -16,7 +18,7 @@ class Course(models.Model):
         verbose_name_plural = 'Courses'
     
     def __str__(self):
-        return self.description
+        return self.subject
 
 
 class Student(models.Model):
@@ -30,6 +32,12 @@ class Student(models.Model):
     
     def __str__(self):
         return self.user.get_full_name()
+
+
+@receiver(models.signals.post_save, sender = User)
+def create_auth(sender, instance: User, created, **kwargs):
+    if created:
+        Student.objects.create(user = instance)
 
 
 class LessonPlan(models.Model):

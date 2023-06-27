@@ -9,6 +9,6 @@ urlpatterns = [
     path('signup/<str:token>/', AuthSignupView.as_view(), name = 'signupverify'),
     path('profile/', AuthProfileView.as_view(), name = 'profile'),
     path('reset/', AuthPasswordRequestView.as_view(), name = 'reset'),
-    path('reset/<str:token>/', AuthPasswordRequestView.as_view(), name = 'resetrequestredirect'),
+    path('reset/<str:token>/', AuthPasswordRequestView.as_view(), name = 'resetrequest'),
     path('resetpassword/<str:instance>/', AuthPasswordResetView.as_view(), name = 'resetpassword'),
 ]

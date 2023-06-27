@@ -1,0 +1,92 @@
+/* tutor.css */
+
+body {
+  background: linear-gradient(to bottom, #7fffd4, #0099cc);
+  color: #333;
+}
+
+.page-background {
+  background: inherit;
+}
+
+.draggable-card {
+  border-radius: 10px;
+  cursor: grab;
+  margin-bottom: 20px;
+}
+
+.dragging {
+  opacity: 0.5;
+}
+
+header {
+  background-color: transparent;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+.container {
+  padding: 20px;
+}
+
+.card {
+  border: 1px solid #ccc;
+  height: 200px;
+  overflow: hidden;
+  background-color: #f5f5f5;
+}
+
+.card-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #ff5555; /* Updated color to a slightly brighter red */
+}
+
+.card-text {
+  margin-bottom: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  color: #333;
+}
+
+.card-footer {
+  background-color: #ff5555; /* Updated color to a slightly brighter red */
+  padding: 10px;
+}
+
+.card-footer p {
+  margin-bottom: 0;
+}
+
+.container-fluid {
+  background-color: #eee;
+  padding: 20px;
+}
+
+.container-fluid .card {
+  background-color: #fff;
+}
+
+.btn-danger {
+  background-color: #cc3333;
+  border-color: #cc3333;
+}
+
+.btn-danger:hover {
+  background-color: #b22222;
+  border-color: #b22222;
+}
+
+.btn-primary {
+  background-color: #0099cc;
+  border-color: #0099cc;
+}
+
+.btn-primary:hover {
+  background-color: #0077aa;
+  border-color: #0077aa;
+}
