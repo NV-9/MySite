@@ -1,7 +1,11 @@
+from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 import uuid
 import random 
+from .shortcuts import EmailThread
 
 def random_token(length: int = 40):
     return "".join(list(random.sample('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', length)))
@@ -70,4 +74,25 @@ class User(AbstractBaseUser):
     class Meta:
         verbose_name = 'User'
         verbose_name_plural = 'Users'
+    
+    def send_email_to_me(self, file_path: str, subject: str, context: dict = None):
+        context = context or {}
+        html_content = render_to_string(file_path, context)
+        text_content = strip_tags(html_content)
+        EmailThread(subject, html_content, text_content, [self.email_address], settings.EMAIL_SEND_USER).start()
+
+    def reset_password(self):
+        self.reset_password_token = random_token()
+        self.save()
+
+    def reset_instance(self):
+        self.reset_instance_token = random_token()
+        self.save()
+
+    def change_password(self, password: str):
+        self.set_password(password)
+        self.reset_instance_token = None 
+        self.reset_password_token = None
+        self.save()
+
 

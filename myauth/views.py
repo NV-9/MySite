@@ -77,16 +77,10 @@ class AuthPasswordRequestView(UnauthorisedFormView):
         email_address = form.cleaned_data['email_address']
         try:
             user: User = User.objects.get(email_address = email_address)
-            user.reset_password_token = random_token()
-            user.save()
-
+            user.reset_password()
             path =  request.build_absolute_uri()
             link = f'{path}{user.reset_password_token}'
-            from_email = settings.EMAIL_SEND_USER
-            subject = 'Password Reset Request'
-            html_content = render_to_string('myauth/email-reset-request.html', {'url': link})
-            text_content = strip_tags(html_content)
-            EmailThread(subject, html_content, text_content, [user.email_address], from_email).start()
+            user.send_email_to_me('myauth/email-reset-request.html', 'Password Reset Request', {'url': link})            
         except:
             pass
         return render(request, template_name = 'myauth/check-email.html', context = {'title': 'Check Email for Reset','text': 'If your email matches one in our records, please check it to reset your password!'})
@@ -110,18 +104,9 @@ class AuthPasswordResetView(UnauthorisedFormView):
     def form_valid(self, form: Any, request: HttpRequest) -> HttpResponse:
         password = form.cleaned_data['password']
         try:
-            user: User = User.objects.get(reset_instance_token = getattr(request, 'instance', None))
-            user.set_password(password)
-            user.reset_password_token = None
-            user.reset_instance_token = None
-            user.save()
-
-            from_email = settings.EMAIL_SEND_USER
-            subject = 'Password Changed'
-            html_content = render_to_string('myauth/email-password-change.html')
-            text_content = strip_tags(html_content)
-            EmailThread(subject, html_content, text_content, [user.email_address], from_email).start()
-
+            user: User = User.objects.get(reset_instance_token = getattr(request, 'instance', 'invalid'))
+            user.change_password(password)
+            user.send_email_to_me('myauth/email-password-change.html', 'Password Changed')
             return redirect(self.get_success_url())
         except:
             pass 
