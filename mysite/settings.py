@@ -40,13 +40,13 @@ MIDDLEWARE = [
 
 CSP_STYLE_SRC = ["'self'", "cdn.jsdelivr.net",'fonts.googleapis.com','ajax.googleapis.com', 'fonts.gstatic.com','cdn.jsdelivr.net', 'cdnjs.cloudflare.com']
 CSP_IMG_SRC = ["'self'",]
-CSP_SCRIPT_SRC = ["'self'", "cdn.jsdelivr.net", 'ajax.googleapis.com','google.com', 'cdnjs.cloudflare.com', 'cdn.jsdelivr.net', 'maps.googleapis.com']
-CSP_STYLE_SRC_ELEM = ["'self'", "cdn.jsdelivr.net", 'fonts.googleapis.com', 'fonts.gstatic.com', 'cdn.jsdelivr.net', 'cdnjs.cloudflare.com', 'unpkg.com', "'sha256-E655353E4C962F4EF32962DC428BD9C6029FD3AECE6CC70EB43BE3D0B99ED2BB'"]
+CSP_SCRIPT_SRC = ["'self'", "cdn.jsdelivr.net", 'ajax.googleapis.com','google.com', 'cdnjs.cloudflare.com', 'cdn.jsdelivr.net', 'maps.googleapis.com'] 
+CSP_STYLE_SRC_ELEM = ["'self'", "cdn.jsdelivr.net", 'fonts.googleapis.com', 'fonts.gstatic.com', 'cdn.jsdelivr.net', 'cdnjs.cloudflare.com', 'unpkg.com', "'sha256-kHM10QeovfHyEOHi/nC06xCV679bhgw1LDWtvGw3k6U='"] 
 CSP_FONT_SRC = ["'self'", "fonts.gstatic.com", "data:", 'cdn.jsdelivr.net', 'unpkg.com']
 CSP_FRAME_SRC = ["'self'", 'www.google.com', 'google.com', 'discord.com']
-CSP_INCLUDE_NONCE_IN = ["script-src",]
-CSP_EXCLUDE_URL_PREFIXES = ('/admin/',)
-CSP_DEFAULT_SOURCE = ("'self'", "'sha256-E655353E4C962F4EF32962DC428BD9C6029FD3AECE6CC70EB43BE3D0B99ED2BB'")
+CSP_INCLUDE_NONCE_IN = ["script-src", "style-src"]
+CSP_EXCLUDE_URL_PREFIXES = ('/admin/','/tutor/calendar/')
+CSP_DEFAULT_SOURCE = ("'self'",)
 
 
 ROOT_URLCONF = 'mysite.urls'

@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{% static 'tutor/assets/css/calendar.css' %}">
 {% endblock styles %}
 {% block scripts %}
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.8/index.global.min.js" integrity="sha512-R2ktoX0ULWEVnA5+oE1kuNEl3KZ9SczXbJk4aT7IgPNfbgTqMG7J14uVqPsdQmZfyTjh0rddK9sG/Mlj97TMEw==" crossorigin="anonymous" referrerpolicy="no-referrer" defer nonce="{{ CSP_NONCE }}"></script>
     <script src="{% static 'tutor/assets/js/calendar.js' %}" defer></script>
 {% endblock scripts %}
 {% block head %}
