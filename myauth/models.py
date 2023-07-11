@@ -7,6 +7,7 @@ import uuid
 import random 
 from .shortcuts import EmailThread
 
+
 def random_token(length: int = 40):
     return "".join(list(random.sample('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', length)))
 
@@ -44,7 +45,6 @@ class User(AbstractBaseUser):
 
     is_active = models.BooleanField(verbose_name = 'Account Active?', default = True)
     is_staff  = models.BooleanField(verbose_name = 'Account Admin?',  default = False)
-    is_profile = models.BooleanField(verbose_name = 'Account Profile?', default = False)
     is_verified = models.BooleanField(verbose_name = 'Account Verified?', default = False)
 
     created_at = models.DateTimeField(verbose_name = 'Created At', auto_now_add = True)
@@ -94,5 +94,3 @@ class User(AbstractBaseUser):
         self.reset_instance_token = None 
         self.reset_password_token = None
         self.save()
-
-

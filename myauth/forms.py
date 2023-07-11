@@ -3,9 +3,8 @@ from datetime import datetime, timedelta
 from django import forms 
 
 from .models import User 
+from .shortcuts import DateInput
 
-class DateInput(forms.DateInput):
-    input_type = 'date'
 
 class UserLoginForm(forms.Form):
     email_address = forms.EmailField(

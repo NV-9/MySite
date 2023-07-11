@@ -1,6 +1,7 @@
 # ABC View Templates
 # 2 branches: unauthorised and authorised
 
+from django import forms
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
@@ -11,6 +12,9 @@ from django.utils.decorators import method_decorator
 from django.views.generic.edit import FormView, UpdateView
 import threading
 from typing import Any
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
 
 class AuthorisationMixin:
     login_url = settings.LOGIN_URL
@@ -35,8 +39,10 @@ class AuthorisedUpdateView(AuthorisationMixin, UpdateView):
     
 class UnauthorisedFormView(FormView):
 
+    http_method_names = ['get', 'post']
+
     def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
-        if request.user.is_authenticated:
+        if request.user.is_authenticated and not getattr(self, 'login_url', False):
             return redirect(self.get_success_url())
         return super().dispatch(request, *args, **kwargs)
 
@@ -54,7 +60,9 @@ class UnauthorisedFormView(FormView):
         return render(request, template_name = self.template_name, context = {'form': form})
 
 class AuthorisedFormView(AuthorisationMixin, UnauthorisedFormView):
-    pass
+    
+    def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
+        return super().dispatch(request, *args, **kwargs)
     
 class EmailThread(threading.Thread):
     def __init__(self, subject, html_content, text_content, recipient_list, sender):
