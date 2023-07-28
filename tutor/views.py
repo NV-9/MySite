@@ -46,9 +46,9 @@ class CalendarView(AuthorisedFormView):
             return self.form_invalid(form, request)
     
     def form_valid(self, form: Any, request: HttpRequest) -> HttpResponse:
-        instance: Booking = form.save(commit = False)
-        instance.student = request.user.student
-        instance.save()
+        start_time = datetime.datetime.combine(form.cleaned_data['date'], form.cleaned_data['start_time'])
+        end_time = datetime.datetime.combine(form.cleaned_data['date'], form.cleaned_data['end_time'])
+        Booking.objects.create(start_time = start_time, end_time = end_time, student = request.user.student)
         return super().form_valid(form, request)
 
 

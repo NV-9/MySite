@@ -3,11 +3,8 @@ from django import forms
 
 from .models import *
 
-
 class DateInput(forms.DateInput):
     input_type = 'date'
-
-
 
 class AddLessonForm(forms.ModelForm):
 
@@ -34,7 +31,6 @@ class AddLessonForm(forms.ModelForm):
         return super().save(commit)
 
    
-
 class EditLessonForm(forms.ModelForm):
 
     class Meta:
@@ -42,23 +38,8 @@ class EditLessonForm(forms.ModelForm):
         fields = ('start_time', 'end_time', 'clash', 'paid', 'lessonplan')
 
 
+class LessonBookingForm(forms.Form):
 
-class LessonBookingForm(forms.ModelForm):
-
-    class Meta:
-        model = Booking
-        fields = ('start_time', 'end_time',)
-        widgets = {
-            'start_time': DateInput(
-                attrs = {
-                    'class': 'form-control datetimepicker',
-                    'id': 'start_time'
-                }
-            ),
-            'end_time': DateInput(
-                attrs = {
-                    'class': 'form-control datetimepicker',
-                    'id': 'end_time'
-                }
-            )
-        }
+    date = forms.DateField(widget = forms.DateInput(attrs = {'type': 'date'}))
+    start_time = forms.TimeField(widget = forms.TimeInput(attrs={'type': 'time'}))
+    end_time = forms.TimeField(widget = forms.TimeInput(attrs={'type': 'time'}))
