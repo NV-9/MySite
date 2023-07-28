@@ -16,7 +16,7 @@ from .shortcuts import AuthorisedUpdateView, UnauthorisedFormView, EmailThread
 
 
 class AuthRedirectView(RedirectView):
-    url = 'profile'
+    url = 'login'
 
 class AuthLogoutView(RedirectView):
     url = '/'
@@ -39,7 +39,6 @@ class AuthLoginView(UnauthorisedFormView):
             if check_password(password, user.password):
                 if user.is_verified or user.is_staff:
                     login(request, user)
-                    print(request.user.is_authenticated)
                     return redirect(self.get_success_url())
         except:
             form.add_error('email_address', 'User with that email address does not exist / Password incorrect!')
