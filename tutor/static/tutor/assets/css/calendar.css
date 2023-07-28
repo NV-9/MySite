@@ -1,0 +1,133 @@
+body {
+    background-image: linear-gradient(to bottom, #7fffd4, #0099cc);
+    overflow-x: hidden;
+}
+
+.calendar-wrapper {
+    height: 600px;
+    overflow: hidden;
+}
+
+.calendar-container {
+    height: 100%;
+    overflow: auto;
+}
+
+.fc {
+    font-family: Arial, sans-serif;
+}
+
+.fc-header-toolbar {
+    background-color: #ff5555; /* Set the background color to the first color in the gradient */
+    color: #fff;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.fc-header-toolbar h2 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.fc-daygrid-button,
+.fc-timegrid-button,
+.fc-list-button {
+    background-color: #2196f3; /* Set the background color to the first color in the gradient */
+    color: #fff;
+    border-color: #2196f3; /* Set the border color to the first color in the gradient */
+}
+
+.fc-button-primary {
+    background-color: #4caf50; /* Set the background color to the third color in the gradient */
+    border-color: #4caf50; /* Set the border color to the third color in the gradient */
+}
+
+.fc-button-primary:hover {
+    background-color: #0c7dd5; /* Use a shade of blue similar to the second color in the gradient */
+    border-color: #0c7dd5;
+}
+
+.fc-button-primary:focus {
+    background-color: #4caf50;
+    border-color: #4caf50;
+    box-shadow: none;
+}
+
+.fc-button-primary:active {
+    background-color: #4caf50;
+    border-color: #4caf50;
+    box-shadow: none;
+}
+
+.fc-daygrid-dot-event {
+    background-color: #2196f3; /* Set the background color to the first color in the gradient */
+}
+
+.fc-daygrid-dot-event:hover {
+    background-color: #ff4740;
+}
+
+.fc-daygrid-dot-event .fc-event-title {
+    color: #fff;
+}
+
+.fc-timegrid-event {
+    background-color: #ffd700;
+    border-color: #ffbb00;
+    color: #fff;
+    margin-top: 0;
+}
+
+.fc-timegrid-event:hover {
+    background-color: #ffc400;
+    border-color: #ffa200;
+    color: #fff;
+}
+
+.fc-timegrid-event .fc-event-title {
+    color: #fff;
+}
+
+.fc-list-item-marker {
+    background-color: #1e90ff;
+    color: #fff;
+}
+
+.fc-list-item-marker:hover {
+    background-color: #1c84e9;
+    color: #fff;
+}
+
+.fc-list-item-marker .fc-event-title {
+    color: #fff;
+}
+
+.fc-timegrid-slot.fc-timegrid-slot-label {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.card {
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-primary {
+    margin-top: 10px;
+}
+
+.fc-event-hide-text .fc-content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

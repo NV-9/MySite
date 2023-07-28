@@ -1,0 +1,19 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}Check Email - Viswamedha Nalabotu{% endblock title %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'myauth/assets/css/check-email.css' %}">
+{% endblock styles %}
+{% block scripts %}
+{% endblock scripts %}
+{% block head %}
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="card">
+        <h1 class="card-title">{{ title }}</h1>
+        <p class="card-text">{{ text }}</p>
+    </div>
+</div>
+{% endblock body %}

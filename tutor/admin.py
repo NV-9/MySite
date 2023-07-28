@@ -1,0 +1,28 @@
+from django.contrib import admin
+from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
+
+
+from .models import * 
+from .forms import *
+
+
+@admin.register(Lesson)
+class LessonAdmin(admin.ModelAdmin):
+    list_display = ['lessonplan', 'start_time', 'end_time', 'paid']
+    list_filter = ['start_time', 'end_time', 'paid']
+    ordering = ['id', '-start_time']
+
+    form = AddLessonForm
+
+
+@admin.register(LessonPlan)
+class LessonPlanAdmin(admin.ModelAdmin):
+    list_display = ['student', 'course', 'color']
+    list_filter = ['student', 'course']
+
+
+admin.site.register(Course)
+admin.site.register(Event)
+admin.site.register(Booking)
+

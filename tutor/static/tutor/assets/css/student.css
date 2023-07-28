@@ -1,0 +1,53 @@
+/* student.css */
+body {
+    background-image: linear-gradient(to right, #2196f3, aquamarine, #4caf50);
+    overflow-x: hidden;
+}
+
+.card {
+    margin-bottom: 1rem;
+}
+
+.card-header {
+    color: white;
+}
+
+.card-body {
+    color: white;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-container .card {
+    flex: 0 0 calc(33.33% - 2rem);
+    margin: 0 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.paid {
+    background-color: rgb(34, 238, 130);
+}
+
+.unpaid {
+    background-color: rgb(255, 99, 71);
+    position: relative; /* Added positioning */
+}
+
+.lesson-button {
+    position: absolute; /* Position the button within the card */
+    bottom: 10px;
+    right: 10px;
+    padding: 6px 12px;
+    background-color: #2196f3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.lesson-button:hover {
+    background-color: #0c7dd5;
+}

@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}Reset Request - Viswamedha Nalabotu{% endblock title %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'myauth/assets/css/reset-request.css' %}">
+{% endblock styles %}
+{% block scripts %}
+{% endblock scripts %}
+{% block head %}
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="card">
+        <h1 class="card-title">Reset Password</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+               {{ form.email_address }}
+            </div>
+            <button type="submit" class="btn-primary">Reset Password</button>
+        </form>
+    </div>
+</div>
+{% endblock body %}

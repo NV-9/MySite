@@ -1,0 +1,13 @@
+[
+    {"model": "tutor.course", "pk": 1, "fields": {"subject": "KS3 Computer Science", "description": "Introducing fundamental concepts in Computer Science.", "fee": 15}},
+    {"model": "tutor.course", "pk": 2, "fields": {"subject": "GCSE Computer Science", "description": "Comprehensive exam-focused course covering content from all exam boards.", "fee": 15}},
+    {"model": "tutor.course", "pk": 3, "fields": {"subject": "A-Level Computer Science", "description": "In-depth exam preparation for OCR syllabus, emphasizing advanced computing knowledge.", "fee": 25}},
+    {"model": "tutor.course", "pk": 4, "fields": {"subject": "KS3 Maths", "description": "Explore and understand various mathematical topics for students at Key Stage 3.", "fee": 15}},
+    {"model": "tutor.course", "pk": 5, "fields": {"subject": "GCSE Maths", "description": "Comprehensive coverage of all topics with focus on exam-style questions for various exam boards.", "fee": 20}},
+    {"model": "tutor.course", "pk": 6, "fields": {"subject": "A-Level Maths", "description": "In-depth content coverage and exam preparation for A-Level Maths (specify exam board).", "fee": 25}},
+    {"model": "tutor.course", "pk": 7, "fields": {"subject": "KS3 Physics", "description": "Introduction to essential concepts and principles in Physics at Key Stage 3.", "fee": 15}},
+    {"model": "tutor.course", "pk": 8, "fields": {"subject": "GCSE Physics", "description": "Comprehensive coverage of all topics with focus on exam-style questions for GCSE Physics.", "fee": 20}},
+    {"model": "tutor.course", "pk": 9, "fields": {"subject": "A-Level Physics", "description": "In-depth content coverage and exam preparation for A-Level Physics (specify exam board).", "fee": 25}},
+    {"model": "tutor.course", "pk": 10, "fields": {"subject": "Python (Beginner)", "description": "Introduction to Python programming with emphasis on mathematical applications and fundamental programming skills.", "fee": 15}},
+    {"model": "tutor.course", "pk": 11, "fields": {"subject": "Python (Intermediate)", "description": "Intermediate-level Python programming with applications in various domains based on student interests.", "fee": 15}}
+]
