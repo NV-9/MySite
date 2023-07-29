@@ -3,9 +3,6 @@ from django import forms
 
 from .models import *
 
-class DateInput(forms.DateInput):
-    input_type = 'date'
-
 class AddLessonForm(forms.ModelForm):
 
     recurring = forms.BooleanField(required = False)
@@ -40,6 +37,8 @@ class EditLessonForm(forms.ModelForm):
 
 class LessonBookingForm(forms.Form):
 
-    date = forms.DateField(widget = forms.DateInput(attrs = {'type': 'date'}))
-    start_time = forms.TimeField(widget = forms.TimeInput(attrs={'type': 'time'}))
-    end_time = forms.TimeField(widget = forms.TimeInput(attrs={'type': 'time'}))
+    date = forms.DateField(widget = forms.DateInput(attrs = {'type': 'date', 'class': 'form-control'}))
+    start_time = forms.TimeField(widget = forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}))
+    end_time = forms.TimeField(widget = forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}))
+
+

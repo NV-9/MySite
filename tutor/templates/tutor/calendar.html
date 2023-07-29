@@ -88,15 +88,27 @@
         <div id="calendar" class="calendar-container"></div>
     </div>
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="card col-md-6 col-sm-8 col-10 mt-5">
-                <h5 class="card-header">Lesson Bookings</h5>
-                <div class="card-body">
-                    <form method="POST">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <h5 class="card-header text-center">Lesson Bookings</h5>
+                    <div class="card-body">
+                        <p>To make a booking, use the form on the right.</p>
+                        <p>If that time is suitable, I will verify it and add it to the calendar.</p>
+                        <p>If you need to make a change or cancel it, please get in touch.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <h5 class="card-header text-center">Lesson Booking Form</h5>
+                    <div class="card-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
