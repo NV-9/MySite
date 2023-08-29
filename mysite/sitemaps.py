@@ -7,7 +7,7 @@ class StaticViewSitemap(sitemaps.Sitemap):
     changefreq = "daily"
 
     def items(self):
-        return ["", "privacy", "tutor", "calendar", "auth", "login", "signup"]
+        return ["", "privacy",]
 
     def location(self, item):
         if item == "":
