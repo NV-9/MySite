@@ -97,3 +97,31 @@ class StudentsView(AuthorisationMixin, ListView):
 
     def get_template_names(self) -> List[str]:
         return ['tutor/students.html']
+
+
+def booking_view(request: HttpRequest):
+
+    if not request.user.is_authenticated or not request.user.is_staff:
+        return redirect('tutor')
+
+    if request.method == "POST":
+        bid = request.POST.get('booking_id', None)
+        if bid is not None:
+            opts = Booking.objects.filter(pk = bid)
+
+            if len(opts) >= 1:
+                booking: Booking = opts[0]
+                plan = booking.student.lessonplan.first()
+                if plan:
+                    lesson = Lesson.objects.create(lessonplan = plan, start_time = booking.start_time, end_time = booking.end_time)
+                    lesson.save()
+                    booking.delete()
+                    return JsonResponse({"success": True})
+        
+        return JsonResponse({"success": False})
+    bookings = Booking.objects.all()
+    return render(request, "tutor/booking.html", context = {'bookings': bookings})
+
+
+
+
