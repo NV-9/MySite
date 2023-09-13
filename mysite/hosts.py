@@ -7,5 +7,6 @@ host_patterns = patterns('',
     host(r'admin', 'mysite.url_admin', name = 'admin'),
     host(r'auth', 'myauth.urls', name = 'auth'),
     host(r'tutor', 'tutor.urls', name = 'tutor'),
+    host(r'api', 'myapi.urls', name = 'api'),
 )
 
