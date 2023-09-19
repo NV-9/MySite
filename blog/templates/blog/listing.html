@@ -1,0 +1,69 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load hosts %}
+{% block title %}Blog - Viswamedha Nalabotu{% endblock title %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'blog/assets/css/blog.css' %}">
+{% endblock styles %}
+{% block head %}
+    <meta name="google" content="notranslate" />
+{% endblock head %}
+{% block body %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow" id="mainNav">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% host_url 'home' %}">My Blog</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item text-black">
+                        <a class="nav-link text-black font-weight-bold" href="{% host_url 'home' %}">Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>   
+    <header class="masthead">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class=" col-md-8 col-md-10 mx-auto">
+                    <div class="site-heading">
+                        <h3 class=" site-heading my-4 mt-3 text-black"> Welcome to my blog </h3>
+                        <p class="text-black">This is a collection of random pieces of information, stories and experiences I have encountered.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mt-3 left">
+                {% for post in posts %}
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ post.title }}</h2>
+                        <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p>
+                        <p class="card-text">{{post.content|slice:":200" }}</p>
+                        <a href="/{{ post.slug  }}/" class="btn btn-primary">Read More &rarr;</a> 
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="col-md-4 float-right ">
+                <div class="card my-4">
+                    <h5 class="card-header">Sidenote</h5>
+                    <div class="card-body">
+                        <p class="card-text">The content here does not aim to help or harm you or anyone, do not take it as advice and definitely do some research.</p>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </div>
+    <footer class="py-3 bg-grey">
+        <p class="m-0 text-dark text-center ">Copyright &copy; Vish's Blog</p>
+    </footer>
+{% endblock body %}

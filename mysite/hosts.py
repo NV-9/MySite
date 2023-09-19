@@ -8,5 +8,6 @@ host_patterns = patterns('',
     host(r'auth', 'myauth.urls', name = 'auth'),
     host(r'tutor', 'tutor.urls', name = 'tutor'),
     host(r'api', 'myapi.urls', name = 'api'),
+    host(r'blog', 'blog.urls', name = 'blog'),
 )
 

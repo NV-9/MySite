@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'main',
     'myauth',
     'tutor',
+    'blog',
 ]
 
 MIDDLEWARE = [

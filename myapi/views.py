@@ -30,10 +30,10 @@ class UserViewSet(viewsets.ModelViewSet):
     filter_backends = (SearchFilter,)
 
 
-
 class BookingViewSet(viewsets.ModelViewSet):
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_fields = ['student', ]
     search_fields = ['$student__user__first_name', '$student__user__last_name', '$student__user__email_address', 'student__user__email_address']
+
