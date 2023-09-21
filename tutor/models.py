@@ -134,7 +134,7 @@ class Lesson(Event):
         return self.lessonplan.fee
     
     def next_week(self):
-        next_lesson: Lesson = Lesson(lessonplan = self.lessonplan, start_time = self.start_time + datetime.timedelta(weeks=1), end_time = self.end_time + datetime.timedelta(weeks=1))     
+        next_lesson: Lesson = Lesson(lessonplan = self.lessonplan, start_time = self.start_time + datetime.timedelta(weeks=1), end_time = self.end_time + datetime.timedelta(weeks=1), clash = self.clash)     
         return next_lesson
 
     def clean(self):
