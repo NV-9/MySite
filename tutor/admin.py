@@ -30,6 +30,5 @@ class EventAdmin(admin.ModelAdmin):
     form = AddEventForm
 
 admin.site.register(Course)
-admin.site.register(Event)
 admin.site.register(Booking)
 
