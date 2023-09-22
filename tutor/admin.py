@@ -21,6 +21,13 @@ class LessonPlanAdmin(admin.ModelAdmin):
     list_display = ['student', 'course', 'color']
     list_filter = ['student', 'course']
 
+@admin.register(Event)
+class EventAdmin(admin.ModelAdmin):
+    list_display = ['start_time', 'end_time']
+    list_filter = ['clash']
+    ordering = ['id', '-start_time']
+
+    form = AddEventForm
 
 admin.site.register(Course)
 admin.site.register(Event)

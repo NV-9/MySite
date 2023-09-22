@@ -114,6 +114,10 @@ class Event(models.Model):
     def save(self, *args, **kwargs):
         self.clean()
         super().save(*args, **kwargs)
+    
+    def next_week(self):
+        next_lesson: Event = Event(start_time = self.start_time + datetime.timedelta(weeks=1), end_time = self.end_time + datetime.timedelta(weeks=1), clash = self.clash)     
+        return next_lesson
 
 
 class Lesson(Event):
