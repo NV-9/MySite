@@ -24,7 +24,7 @@
                         {   
                             "start": "{{ event.start_time|date:"Y-m-d\TH:i:s" }}",
                             "end": "{{ event.end_time|date:"Y-m-d\TH:i:s" }}",
-                            "title": "{{ event.lesson.lessonplan }}",
+                            "title": "{{ event.lesson.lessonplan.student }}",
                             "groupId": {{ event.lesson.lessonplan.id|default:0 }},
                             "color": "{{ event.lesson.lessonplan.color }}",
                             "textColor": {% if event.lesson.paid %}"#00ff00"{% else %}"#ff0000"{% endif %}
@@ -51,7 +51,7 @@
                             {   
                                 "start": "{{ event.start_time|date:"Y-m-d\TH:i:s" }}",
                                 "end": "{{ event.end_time|date:"Y-m-d\TH:i:s" }}",
-                                "title": "{{ event.lesson.lessonplan }}",
+                                "title": "{{ event.lesson.lessonplan.student }}",
                                 "groupId": {{ event.lesson.lessonplan.id|default:0 }},
                                 "color": "{{ event.lesson.lessonplan.color }}",
                                 "textColor": {% if event.lesson.paid %}"#00ff00"{% else %}"#ff0000"{% endif %}
