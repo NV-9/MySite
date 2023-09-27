@@ -19,4 +19,5 @@ urlpatterns = [
     path('', include('main.urls')),
     path("sitemap.xml", sitemap, {"sitemaps": sitemaps, "template_name": "custom_sitemap.html"}, name="django.contrib.sitemaps.views.sitemap"),
     path('favicon.ico', RedirectView.as_view(url = staticfiles_storage.url('assets/img/favicon.ico'))),
+    path('.well-known/discord', RedirectView.as_view(url = staticfiles_storage.url('main/assets/discord'))),
 ] + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
