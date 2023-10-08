@@ -8,24 +8,24 @@ class ContactForm(forms.ModelForm):
         max_length = 50, 
         required = True, 
         label = 'Your Name',
-        widget = forms.TextInput(attrs = {'class': 'form-control', 'id': 'name'})
+        widget = forms.TextInput(attrs = {'class': 'input-name', 'id': 'name', 'placeholder': 'Name'})
     )
     email = forms.EmailField(
         required = True, 
         label = 'Your Email',
-        widget = forms.EmailInput(attrs = {'class': 'form-control', 'id': 'email'})
+        widget = forms.EmailInput(attrs = {'class': 'input-name', 'id': 'email', 'placeholder': 'Email'})
     )
     subject = forms.CharField(
         max_length = 100, 
         required = True,
         label = 'Subject',
-        widget = forms.TextInput(attrs = {'class': 'form-control', 'id': 'subject'})
+        widget = forms.TextInput(attrs = {'class': 'input-subject', 'id': 'subject', 'placeholder': 'Subject'})
     )
     content = forms.CharField(
         max_length = 2000, 
         required = True,
         label = 'Message',
-        widget = forms.Textarea(attrs = {'class': 'form-control', 'id': 'content', 'rows': '10'})
+        widget = forms.Textarea(attrs = {'class': 'input-textarea', 'id': 'content', 'rows': '10', 'placeholder': 'Message'})
     )
 
     class Meta:

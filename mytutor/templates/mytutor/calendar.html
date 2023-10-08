@@ -1,0 +1,116 @@
+{% extends 'mytutor/base.html' %}
+{% load static %}
+{% block title %}Calendar - Viswamedha Nalabotu{% endblock title %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'tutor/assets/css/calendar.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" integrity="sha512-3JRrEUwaCkFUBLK1N8HehwQgu8e23jTH4np5NHOmQOobuC4ROQxFwFgBLTnhcnQRMs84muMh0PnnwXlPq5MGjg==" crossorigin="anonymous" />
+
+{% endblock styles %}
+{% block scripts %}
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js" defer></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js" defer></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.8/index.global.min.js" integrity="sha512-R2ktoX0ULWEVnA5+oE1kuNEl3KZ9SczXbJk4aT7IgPNfbgTqMG7J14uVqPsdQmZfyTjh0rddK9sG/Mlj97TMEw==" crossorigin="anonymous" referrerpolicy="no-referrer" defer nonce="{{ CSP_NONCE }}"></script>
+    <script src="{% static 'tutor/assets/js/calendar.js' %}" defer></script>
+{% endblock scripts %}
+{% block head %}
+    <script id="events-data" type="application/json">
+        {% if request.user.is_staff %}
+            [
+                {% for event in events %}
+                    {% if event.lesson %}
+                        {   
+                            "start": "{{ event.start_time|date:"Y-m-d\TH:i:s" }}",
+                            "end": "{{ event.end_time|date:"Y-m-d\TH:i:s" }}",
+                            "title": "{{ event.lesson.lessonplan.student }}",
+                            "groupId": {{ event.lesson.lessonplan.id|default:0 }},
+                            "color": "{{ event.lesson.lessonplan.color }}",
+                            "textColor": {% if event.lesson.paid %}"#00ff00"{% else %}"#ff0000"{% endif %}
+                        }
+                    {% else %}
+                        {   
+                            "start": "{{ event.start_time|date:"Y-m-d\TH:i:s" }}",
+                            "end": "{{ event.end_time|date:"Y-m-d\TH:i:s" }}",
+                            "title": "Unavailable",
+                            "groupId": 999,
+                            "color": "#000000",
+                            "textColor": "#FFFFFF"
+                        }
+                        
+                    {% endif %}
+                    {% if not forloop.last %},{% endif %}
+                {% endfor %}
+            ]
+        {% elif request.user.student %}
+            [
+                {% for event in events %}
+                    {% if event.lesson %}
+                        {% if request.user.student == event.lesson.lessonplan.student %}
+                            {   
+                                "start": "{{ event.start_time|date:"Y-m-d\TH:i:s" }}",
+                                "end": "{{ event.end_time|date:"Y-m-d\TH:i:s" }}",
+                                "title": "{{ event.lesson.lessonplan.student }}",
+                                "groupId": {{ event.lesson.lessonplan.id|default:0 }},
+                                "color": "{{ event.lesson.lessonplan.color }}",
+                                "textColor": {% if event.lesson.paid %}"#00ff00"{% else %}"#ff0000"{% endif %}
+                            }
+                        {% else %}
+                            {   
+                                "start": "{{ event.start_time|date:"Y-m-d\TH:i:s" }}",
+                                "end": "{{ event.end_time|date:"Y-m-d\TH:i:s" }}",
+                                "title": "Slot Taken",
+                                "groupId": 0,
+                                "color": "#ffffff",
+                                "textColor": "#000000"
+                            }
+                        {% endif %}
+                    {% else %}
+                        {   
+                            "start": "{{ event.start_time|date:"Y-m-d\TH:i:s" }}",
+                            "end": "{{ event.end_time|date:"Y-m-d\TH:i:s" }}",
+                            "title": "Unavailable",
+                            "groupId": 999,
+                            "color": "#000000",
+                            "textColor": "#FFFFFF"
+                        }
+                        
+                    {% endif %}
+                    {% if not forloop.last %},{% endif %}
+                {% endfor %}
+            ]
+        {% endif %}
+    </script>
+{% endblock head %}
+{% block body %}
+    <div class="calendar-wrapper">
+        <div id="calendar" class="calendar-container"></div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <h5 class="card-header text-center">Lesson Bookings</h5>
+                    <div class="card-body">
+                        <p>To make a booking, use the form on the right.</p>
+                        <p>If that time is suitable, I will verify it and add it to the calendar.</p>
+                        <p>If you need to make a change or cancel it, please get in touch.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <h5 class="card-header text-center">Lesson Booking Form</h5>
+                    <div class="card-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

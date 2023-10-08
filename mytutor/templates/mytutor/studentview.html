@@ -1,0 +1,46 @@
+{% extends 'mytutor/base.html' %}
+{% load static %}
+{% block title %}Student - {{ student.user.first_name }}{% endblock title %}
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'tutor/assets/css/student.css' %}">
+{% endblock styles %}
+{% block scripts %}
+<script src="{% static 'tutor/assets/js/student.js' %}" defer></script>
+{% endblock scripts %}
+{% block body %}
+<div class="row mt-4">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <h3>{{ student.user.first_name }}</h3>
+        {% if student.unpaid < 0 %}
+        <p>Excess: {{  student.unpaid  }}</p>
+        {% else %}
+        <p>Unpaid: {{ student.unpaid }}</p>
+        {% endif %}
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col-md-2"></div>
+    <div class="card-container">
+        {% for lessonplan in student.lessonplan.all %}
+            {% for lesson in lessonplan.lesson.all|dictsort:"id" %}
+                {% if forloop.counter0|divisibleby:3 and not forloop.first %}
+                    <div class="clearfix"></div>
+                {% endif %}
+                <div class="card {% if lesson.paid %}paid{% else %}unpaid{% endif %}">
+                    <div class="card-title">
+                        ID: {{ lesson.id }}
+                    </div>
+                    <div class="card-body">
+                        <p>Start Time: {{ lesson.start_time }}</p>
+                        {% if not lesson.paid %}
+                            <button class="lesson-button" data-lesson-id="{{ lesson.id }}">Pay</button>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+</div>
+{% csrf_token %}
+{% endblock body %}

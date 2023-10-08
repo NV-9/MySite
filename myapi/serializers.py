@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate
 from rest_framework import permissions, serializers
 from myauth.models import User
-from tutor.models import Booking
+from mytutor.models import Booking, Student, Lesson
 
 
 class LoginSerializer(serializers.Serializer):
@@ -37,10 +37,12 @@ class LoginSerializer(serializers.Serializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = User
         fields = ['id', 'user_uuid', 'email_address', 'date_of_birth', 'first_name', 'last_name', 'is_staff', 'is_active', 'is_verified', 'created_at', 'updated_at']
         permission_classes = [permissions.IsAuthenticated]
+        
 
 
 class BookingSerializer(serializers.ModelSerializer):
@@ -49,4 +51,21 @@ class BookingSerializer(serializers.ModelSerializer):
         model = Booking
         fields = ['student', 'start_time', 'end_time']
         permission_classes = [permissions.IsAuthenticated]
+
+
+class StudentSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Student
+        fields = ['user', 'unpaid']
+        permission_classes = [permissions.IsAuthenticated]
+
+
+class LessonSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Lesson
+        fields = ['start_time', 'end_time', 'clash', 'lessonplan', 'paid']
+        permission_classes = [permissions.IsAuthenticated]
+
 

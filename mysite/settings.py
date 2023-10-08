@@ -30,13 +30,13 @@ DEBUG = config('DEBUG', cast = bool)
 ALLOWED_HOSTS = list(config('ALLOWED_HOSTS', cast = Csv()))
 MY_DOMAIN_NAME = config('DOMAIN_NAME')
 
-GITHUB_URL = config('GITHUB_URL', default = '')
-INSTAGRAM_URL = config('INSTAGRAM_URL', default = '')
-LINKEDIN_URL = config('LINKEDIN_URL', default = '')
-SOCIAL_URLS = {
-    'github': GITHUB_URL,
-    'instagram': INSTAGRAM_URL,
-    'linkedin': LINKEDIN_URL
+CUSTOM_DATA = {
+    'facebook': config('FACEBOOK_URL', default = ''),
+    'github': config('GITHUB_URL', default = ''),
+    'instagram': config('INSTAGRAM_URL', default = ''),
+    'linkedin': config('LINKEDIN_URL', default = ''),
+    'cv_url': config('CV_URL', default = ''),
+    'email': config('EMAIL', default = ''),
 }
 
 # All apps
@@ -56,8 +56,9 @@ INSTALLED_APPS = [
     'django_hosts',
     'main',
     'myauth',
-    'tutor',
-    'blog',
+    'mytutor',
+    'myblog',
+    'myapi',
 ]
 
 MIDDLEWARE = [
@@ -88,10 +89,10 @@ REST_FRAMEWORK = {
 WSGI_APPLICATION = 'mysite.wsgi.application'
 ASGI_APPLICATION = 'mysite.asgi.application'
 
-ROOT_URLCONF = 'mysite.urls'
+ROOT_URLCONF = 'mysite.urls.urls'
 DEFAULT_HOST = 'www'
 PARENT_HOST = MY_DOMAIN_NAME
-ROOT_HOSTCONF = 'mysite.hosts'
+ROOT_HOSTCONF = 'mysite.urls.hosts'
 
 SESSION_COOKIE_DOMAIN = f".{MY_DOMAIN_NAME}"
 DOMAIN_NAME = MY_DOMAIN_NAME
@@ -207,5 +208,5 @@ CSP_STYLE_SRC_ELEM = ["'self'", "cdn.jsdelivr.net", 'fonts.googleapis.com', 'fon
 CSP_FONT_SRC = ["'self'", "fonts.gstatic.com", "data:", 'cdn.jsdelivr.net', 'unpkg.com']
 CSP_FRAME_SRC = ["'self'", 'www.google.com', 'google.com', 'discord.com']
 CSP_INCLUDE_NONCE_IN = ["script-src", "style-src"]
-CSP_EXCLUDE_URL_PREFIXES = ('','/tutor/calendar/')
+CSP_EXCLUDE_URL_PREFIXES = ('', '/calendar/')
 CSP_DEFAULT_SOURCE = ("'self'",)

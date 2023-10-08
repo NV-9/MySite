@@ -1,8 +1,7 @@
 from django.conf import settings
 from django.http import HttpRequest, HttpResponse, JsonResponse
-from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
-from typing import Any, Dict
+from typing import Any
 
 from .forms import ContactForm
 
@@ -18,10 +17,7 @@ def get_client_ip(request):
 class HomeView(FormView):
     template_name = 'main/home.html'
     form_class = ContactForm
-
-    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
-        kwargs.update(settings.SOCIAL_URLS)
-        return super().get_context_data(**kwargs)
+    extra_context = settings.CUSTOM_DATA
 
     def post(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
         form = self.get_form()
@@ -37,5 +33,3 @@ class HomeView(FormView):
         form.save(ip = get_client_ip(request))  
         return JsonResponse({'success': True})
 
-class PrivacyView(TemplateView):
-    template_name = 'main/privacy.html'

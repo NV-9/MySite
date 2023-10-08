@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 
 from .forms import UserSignupForm
 from .models import User
-from tutor.models import Student
+from mytutor.models import Student
 
 
 class StudentInline(admin.TabularInline):
