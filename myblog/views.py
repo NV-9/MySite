@@ -9,10 +9,10 @@ def post_view(request, slug: str = None):
             post: Post = Post.objects.get(slug = slug)
             if post.published == True:
                 context = {'post': post}
-                return render(request, "blog/post.html", context = context)
+                return render(request, "myblog/post.html", context = context)
         except:
             pass 
     context = {'posts': Post.objects.filter(published = True)}
-    return render(request, "blog/listing.html", context = context)
+    return render(request, "myblog/listing.html", context = context)
     
     

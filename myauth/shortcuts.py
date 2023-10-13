@@ -77,7 +77,7 @@ class AuthorisationMixin:
     def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
         return super().dispatch(request, *args, **kwargs)
 
-class AuthorisedUpdateView(UpdateView):
+class AuthorisedUpdateView(AuthorisationMixin, UpdateView):
 
     def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
         return super().dispatch(request, *args, **kwargs)
