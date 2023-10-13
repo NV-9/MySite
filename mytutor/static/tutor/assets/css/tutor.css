@@ -1,18 +1,12 @@
-/* tutor.css */
-
 body {
-  background: linear-gradient(to bottom, #7fffd4, #0099cc);
-  color: #333;
+	background: linear-gradient(to bottom, #7fffd4, #0099cc);
+	background-repeat: no-repeat;
+	color: #333;
+	background-attachment: fixed;
 }
 
-.page-background {
-  background: inherit;
-}
-
-.draggable-card {
-  border-radius: 10px;
-  cursor: grab;
-  margin-bottom: 20px;
+.container-fluid {
+    background: inherit;
 }
 
 .dragging {

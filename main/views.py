@@ -2,8 +2,8 @@ from django.conf import settings
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.views.generic.edit import FormView
 from typing import Any
-
 from .forms import ContactForm
+from myblog.models import Post
 
 
 def get_client_ip(request):
@@ -17,7 +17,11 @@ def get_client_ip(request):
 class HomeView(FormView):
     template_name = 'main/home.html'
     form_class = ContactForm
-    extra_context = settings.CUSTOM_DATA
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        kwargs.update(settings.CUSTOM_DATA)
+        kwargs.update({'posts': Post.objects.filter(published = True)})
+        return super().get_context_data(**kwargs)
 
     def post(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
         form = self.get_form()

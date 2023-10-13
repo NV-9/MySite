@@ -72,6 +72,9 @@
                     <a data-text="CONTACT" id="contact-link">CONTACT</a>
                     <a data-text="PRIVACY" id="privacy-link">PRIVACY</a>
                     {% if request.user.is_authenticated %}
+                        {% if request.user.is_staff %}
+                            <a href="{% host_url 'admin:index' host 'admin' %}" data-text="ADMIN">ADMIN</a>
+                        {% endif %}
                         <a href="{% host_url 'calendar' host 'tutor' %}" data-text="CALENDAR">CALENDAR</a>
                     {% endif%}
                 </div>
@@ -248,20 +251,20 @@
 
             <div id="blog">
                 {% include 'main/colorchanger.html' %}
-                <div class="blog-header"> Blogs</span>
+                <div class="blog-header">Blogs</span>
                     <span class="header-caption"> My Latest <span class="color"> blog posts.</span></span>
                 </div>
                 <div class="blog-content">
                     {% for post in posts %}
                         <div class="blogs">
-                            <a href="#">
+                            <a href="{% host_url 'post' post.slug host 'blog' %}">
                                 <div class="img">
-                                    <img src="{{ post.url }}" alt="blog-one">
-                                    <div class="blog-date">{{ post.date }}</div>
+                                    <img src="{{ post.image.url }}" alt="post-{{ forloop.counter }}">
+                                    <div class="blog-date">{{ post.publish_date.date }}</div>
                                 </div>
                                 <div class="blog-text">
-                                    <h3>{{ post.title }}</h3>
-                                    <p>{{ post.content|truncatechars:255 }}</p>
+                                    <h3>{{ post.title|truncatechars:100 }}</h3>
+                                    <p>{{ post.subtitle|truncatechars:255 }}</p>
                                 </div>
                             </a>
                         </div>

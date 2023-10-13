@@ -28,18 +28,17 @@
     <div class="container">
         <div class="row">
             {% for student in students %}
-            <div class="col-md-4 draggable-card">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title"><a href="{{student.user.user_uuid}}">{{ student }}</a></h5>
-                        <p class="card-text">{{ student.user.email_address }}</p>
-                        
-                    </div>
-                    <div class="card-footer">
-                        <p>Unpaid amount: £{{student.unpaid}}</p>
+                <div class="col-md-4">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="{{student.user.user_uuid}}">{{ student }}</a></h5>
+                            <p class="card-text">Last Booked Lesson: {{ student.lessons.last.end_time.date }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <p>Unpaid amount: £{{student.unpaid}}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
             {% endfor %}
         </div>
     </div>

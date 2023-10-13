@@ -36,7 +36,7 @@ class Student(models.Model):
             case _:
                 for lessonplan in self.lessonplan.all():
                     q = q.union(lessonplan.lessons.filter(paid = paid))
-        return q.order_by('start_time')
+        return q.order_by('start_time') if len(q) > 0 else q
     
     def pay(self, value: int):
         for lesson in self.lessons(paid = False):
