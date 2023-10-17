@@ -12,11 +12,7 @@
     <div class="col-md-4"></div>
     <div class="col-md-4">
         <h3>{{ student.user.first_name }}</h3>
-        {% if student.unpaid < 0 %}
-        <p>Excess: {{  student.unpaid  }}</p>
-        {% else %}
-        <p>Unpaid: {{ student.unpaid }}</p>
-        {% endif %}
+        <p id="paidvalue">{% if student.unpaid < 0 %}Excess: {{  student.unpaid  }}{% else %}Unpaid: {{ student.unpaid }}{% endif %}</p>
     </div>
 </div>
 <div class="row mt-4">

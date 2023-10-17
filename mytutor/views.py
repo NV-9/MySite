@@ -66,8 +66,6 @@ class StudentView(AuthorisationMixin, DetailView):
         return super().dispatch(request, *args, **kwargs)
     
     def post(self, request: HttpRequest, *args: Any, **kwargs: Any):
-        print(args)
-        print(request.POST)
         lesson_id = request.POST.get('lesson_id')
         try:
             lesson: Lesson = Lesson.objects.get(pk = lesson_id)

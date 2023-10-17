@@ -17,7 +17,6 @@ def generate_color():
 class Student(models.Model):
 
     user = models.OneToOneField(User, verbose_name = 'User',related_name = 'student', on_delete = models.CASCADE)
-
     unpaid = models.IntegerField(verbose_name = 'Unpaid', default = 0)
 
     class Meta:
@@ -159,8 +158,8 @@ class Lesson(Event):
         if self.paid != True:
             self.lessonplan.student.unpaid -= self.fee 
             self.paid = True
-            check = self.save()
-            if check:
+            self.save()
+            if self.paid:
                 self.lessonplan.student.save()
             return True 
         return False
