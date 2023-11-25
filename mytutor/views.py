@@ -31,7 +31,7 @@ class CalendarView(AuthorisedFormView):
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = {
-            'events': Event.objects.filter(start_time__gte=datetime.datetime.now(tz=datetime.timezone.utc) - datetime.timedelta(months = 6))
+            'events': Event.objects.filter(start_time__gte=datetime.datetime.now(tz=datetime.timezone.utc) - datetime.timedelta(days = 180))
         }      
         kwargs.update(context)
         return super().get_context_data(**kwargs)
